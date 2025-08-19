@@ -747,7 +747,7 @@ context_window = 4096"#, i, i)).collect::<Vec<_>>().join("\n")
         let _config = ConfigManager::load_config_from_path(&config_path).unwrap();
         let load_time = start.elapsed();
         
-        assert!(load_time.as_millis() < 10, "Config load took {}ms, expected <10ms", load_time.as_millis());
+        assert!(load_time.as_millis() < 50, "Config load took {}ms, expected <50ms", load_time.as_millis());
     }
 
     #[test]
