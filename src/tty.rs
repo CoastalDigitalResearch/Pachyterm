@@ -417,7 +417,7 @@ impl TtyEngine {
         match read_result {
             Ok((bytes_read, temp_buffer)) => {
                 if bytes_read < 0 {
-                    let errno = unsafe { *libc::__error() };
+                    let errno = std::io::Error::last_os_error().raw_os_error().unwrap_or(0);
                     if errno == libc::EAGAIN || errno == libc::EWOULDBLOCK {
                         Ok(0) // No data available
                     } else {
